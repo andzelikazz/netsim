@@ -19,7 +19,7 @@ class IPackageReceiver{
 
 class ReceiverPreferences {
 public:
-  ReceiverPreferences(std::function pg);
+  ReceiverPreferences(ProbabilityGenerator pg);
   void add_receiver(IPackageReceiver* r); 
   void remove_receiver(IPackageReceiver* r);
   IPackageReceiver* choose_receiver();
