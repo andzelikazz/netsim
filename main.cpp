@@ -1,12 +1,13 @@
-//#include "gtest/gtest.h"
 #include <iostream>
+#include "package.hxx"
+#include "storage_types.hxx"
+#include "types.hxx"
+#include "nodes.hxx"
+#include "helpers.hxx"
+
+
+
 
 int main() {
     std::cout << "cokolwiek" << std::endl;
-    return 0;
 }
-//#include "gtest/gtest.h"
-//int main(int argc, char** argv) {
-//::testing::InitGoogleTest(&argc, argv);
-//return RUN_ALL_TESTS();
-//}

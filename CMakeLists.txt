@@ -3,26 +3,31 @@ project(netsim)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_compile_options(-Wall)
 
-# Set default compile flags for GCC
-set(GOOD_COMPILERS Clang GNU)
-if (CMAKE_CXX_COMPILER_ID IN_LIST GOOD_COMPILERS)
-    message(STATUS "GCC detected, adding compile flags")
-    add_compile_options(-Wextra -Werror -Wpedantic -pedantic-errors)
-endif ()
-
-set(SOURCE_DIR ./src)
+set(SOURCE_DIR src)
 set(SOURCE_FILES
-        ${SOURCE_DIR}/package.cpp
-        ${SOURCE_DIR}/helpers.cpp
-        ${SOURCE_DIR}/nodes.cpp
-        ${SOURCE_DIR}/factory.cpp
-        ${SOURCE_DIR}/storage_types.cpp)
-add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES})
-
-include_directories(
-        src
-        include
+    ${SOURCE_DIR}/package.cpp
+    ${SOURCE_DIR}/helpers.cpp
+    ${SOURCE_DIR}/nodes.cpp
+    ${SOURCE_DIR}/factory.cpp
+    ${SOURCE_DIR}/storage_types.cpp
+    ${SOURCE_DIR}/nodes.cpp
+    ${SOURCE_DIR}/helpers.cpp
 )
 
+add_executable(netsim main.cpp ${SOURCE_FILES})
+target_include_directories(netsim PUBLIC src include)
+
+add_subdirectory(googletest-1.17.0 googletest-master)
+
+set(TEST_FILES
+    tests/main_gtest.cpp
+    tests/tests.cpp
+)
+
+add_executable(netsim_tests ${TEST_FILES} ${SOURCE_FILES})
+target_include_directories(netsim_tests PUBLIC src include)
+target_link_libraries(netsim_tests gtest_main gmock_main)
+
+enable_testing()
+add_test(NAME AllTests COMMAND netsim_tests)
