@@ -20,8 +20,10 @@ Package::Package() {
 }
     
 Package::~Package() {
-    freed_IDs.insert(ID);
-    assigned_IDs.erase(ID);
+    if (ID != ElementID{}) {
+        freed_IDs.insert(ID);
+        assigned_IDs.erase(ID);
+    }
 }
 
 Package& Package::operator=(Package&& other) noexcept {
