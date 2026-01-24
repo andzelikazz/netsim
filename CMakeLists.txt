@@ -11,8 +11,6 @@ set(SOURCE_FILES
     ${SOURCE_DIR}/nodes.cpp
     ${SOURCE_DIR}/factory.cpp
     ${SOURCE_DIR}/storage_types.cpp
-    ${SOURCE_DIR}/nodes.cpp
-    ${SOURCE_DIR}/helpers.cpp
 )
 
 add_executable(netsim main.cpp ${SOURCE_FILES})
@@ -22,12 +20,15 @@ add_subdirectory(googletest-1.17.0 googletest-master)
 
 set(TEST_FILES
     tests/main_gtest.cpp
-    tests/tests.cpp
+    tests/test_products.cpp
+    tests/test_nodes.cpp
+    tests/test_factory.cpp
+    tests/test_factory_io.cpp
 )
 
 add_executable(netsim_tests ${TEST_FILES} ${SOURCE_FILES})
 target_include_directories(netsim_tests PUBLIC src include)
-target_link_libraries(netsim_tests gtest_main gmock_main)
+target_link_libraries(netsim_tests gtest gmock)
 
 enable_testing()
 add_test(NAME AllTests COMMAND netsim_tests)
