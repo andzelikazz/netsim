@@ -1,11 +1,6 @@
-#include <iostream>
-#include "package.hxx"
-#include "storage_types.hxx"
-#include "types.hxx"
+#include "gtest/gtest.h"
 
-
-
-
-int main() {
-    std::cout << "cokolwiek" << std::endl;
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

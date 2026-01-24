@@ -2,15 +2,15 @@
 
 #include <random>
 
-// Do generowania wysokiej jakoœci ci¹gów liczb pseudolosowych warto u¿yæ
-// zaawansowanych generatorów, np. algorytmu Mersenne Twister.
+// Do generowania wysokiej jakoÅ“ci ciÂ¹gÃ³w liczb pseudolosowych warto uÂ¿yÃ¦
+// zaawansowanych generatorÃ³w, np. algorytmu Mersenne Twister.
 // zob. https://en.cppreference.com/w/cpp/numeric/random
 
 std::random_device rd;
 std::mt19937 rng(rd());
 
 double default_probability_generator() {
-    // Generuj liczby pseudolosowe z przedzia³u [0, 1); 10 bitów losowoœci.
+    // Generuj liczby pseudolosowe z przedziaÂ³u [0, 1); 10 bitÃ³w losowoÅ“ci.
     return std::generate_canonical<double, 10>(rng);
 }
 std::function<double()> probability_generator = default_probability_generator;

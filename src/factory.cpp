@@ -274,9 +274,9 @@ Factory load_factory_structure(std::istream& is) {
 
 std::string queue_type_str(PackageQueueType package_queue_type) {
     switch(package_queue_type) {
-        case FIFO:
+        case PackageQueueType::FIFO:
             return "FIFO";
-        case LIFO:
+        case PackageQueueType::LIFO:
             return "LIFO";
     }
     return {};
