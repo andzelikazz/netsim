@@ -1,6 +1,5 @@
 #ifndef NODES_HPP_
 #define NODES_HPP_
-NODES_HPP_
 
 #include <map>
 #include <memory>
