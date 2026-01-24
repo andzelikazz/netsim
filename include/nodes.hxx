@@ -9,15 +9,15 @@
 #include "storage_types.hxx"
 #include "types.hxx"
 
-//enum class ReceiverType { WORKER, STOREHOUSE };
+enum class ReceiverType { WORKER, STOREHOUSE };
 
-//enum class NodeColor {UNVISITED, VISITED, VERIFIED};
+enum class NodeColor {UNVISITED, VISITED, VERIFIED};
 
 class IPackageReceiver {
 public:
   virtual void receive_package(Package &&p) = 0;
   virtual ElementID get_id() const = 0;
-  //virtual ReceiverType get_receiver_type() const = 0;
+  virtual ReceiverType get_receiver_type() const = 0;
 
   virtual IPackageStockpile::const_iterator begin() const = 0;
   virtual IPackageStockpile::const_iterator end() const = 0;
@@ -86,9 +86,9 @@ public:
   void do_work(Time t); 
   void receive_package(Package &&p) override; 
   ElementID get_id() const override { return id_; }
-  //ReceiverType get_receiver_type() const override {
-  //  return ReceiverType::WORKER;
-  //};
+  ReceiverType get_receiver_type() const override {
+    return ReceiverType::WORKER;
+  };
   IPackageStockpile::const_iterator begin() const override {
     return q_->begin();
   };
@@ -120,9 +120,9 @@ public:
   void receive_package(Package &&p) override { d_->push(std::move(p)); }
   ElementID get_id() const override { return id_; }
 
-  //ReceiverType get_receiver_type() const override {
-  //return ReceiverType::STOREHOUSE;
-  //};
+  ReceiverType get_receiver_type() const override {
+  return ReceiverType::STOREHOUSE;
+  };
   IPackageStockpile::const_iterator begin() const override {
     return d_->begin();
   };
