@@ -5,7 +5,7 @@
 #include <memory>
 #include <optional>
 
-#include "helpers.cpp"
+#include "helpers.hxx"
 #include "storage_types.hxx"
 #include "types.hxx"
 
