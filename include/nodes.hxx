@@ -12,6 +12,8 @@ NODES_HPP_
 
 enum class ReceiverType { WORKER, STOREHOUSE };
 
+enum class NodeColor {UNVISITED, VISITED, VERIFIED};
+
 class IPackageReceiver {
 public:
   virtual void receive_package(Package &&p) = 0;
@@ -57,10 +59,10 @@ public:
   void send_package();
   const std::optional<Package> &get_sending_buffer() const { return buffer_; }
 
-  ReceiverPreferences receiver_preferences;
+  ReceiverPreferences receiver_preferences_;
 
 protected:
-  void push_package(Package &&p) { buffer_.emplace(std::move(p)); }
+  void push_package(Package &&p) { buffer_.emplace(p.get_id()); }
   std::optional<Package> buffer_;
 };
 
