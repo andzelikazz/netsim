@@ -3,7 +3,7 @@
 void ReceiverPreferences::add_receiver(IPackageReceiver *r) {
   if (!r)
     return;
-  preferences_[r] = 0.0f;
+  preferences_[r] = 1.0f;
   normalize();
 }
 
@@ -16,7 +16,7 @@ IPackageReceiver *ReceiverPreferences::choose_receiver() {
   if (preferences_.empty())
     return nullptr;
 
-  double p = probability_generator();
+  double p = pg_();
   double cumulative = 0.0;
   for (auto &[receiver, prob] : preferences_) {
     cumulative += prob;
@@ -45,20 +45,19 @@ void ReceiverPreferences::normalize() {
 
 void PackageSender::send_package() {
   if (!buffer_) {
-    return;
+    return; 
   }
   IPackageReceiver *receiver = receiver_preferences_.choose_receiver();
+  if(!receiver) return;
   receiver->receive_package(std::move(*buffer_));
   buffer_.reset();
 }
 
 void Ramp::deliver_goods(Time t) {
-  if (!buffer_) {
-    push_package(Package());
-    buffer_.emplace(id_);
-    t_ = t;
-  } else if (t - di_ == t_) {
-    push_package(Package());
+  if ((t-1)%di_ == 0) {
+      if (!buffer_){
+          push_package(Package(id_));
+      }
   }
 }
 
@@ -70,7 +69,7 @@ void Worker::do_work(Time t) {
         t_ = t;
     }
 
-    if (processing_buffer_ && (t - t_ + 1 >= pd_)) {
+    if (processing_buffer_ && (t - t_ + 1>= pd_)) {
         push_package(std::move(*processing_buffer_));
         processing_buffer_.reset();
     }
