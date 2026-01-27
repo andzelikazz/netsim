@@ -12,6 +12,7 @@ set(SOURCE_FILES
     ${SOURCE_DIR}/factory.cpp
     ${SOURCE_DIR}/storage_types.cpp
     ${SOURCE_DIR}/simulation.cpp
+    ${SOURCE_DIR}/reports.cpp
 )
 
 add_executable(netsim main.cpp ${SOURCE_FILES})
@@ -26,6 +27,7 @@ set(TEST_FILES
     tests/test_factory.cpp
     tests/test_factory_io.cpp
     tests/test_simulation.cpp
+    tests/test_reports.cpp
 )
 
 add_executable(netsim_tests ${TEST_FILES} ${SOURCE_FILES})

@@ -1,1 +1,1 @@
-# work in progress
+# Netsim - projekt symulacji sieci.
