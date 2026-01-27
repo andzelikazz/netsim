@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
+#include "factory.hxx"
+#include "nodes.hxx"
 
-TEST(FactoryTest, IsConsistentCorrect) {
+TEST(FactoryTest, IsConsistentCorrect1) {
     // R -> W -> S
 
     Factory factory;
@@ -17,7 +19,7 @@ TEST(FactoryTest, IsConsistentCorrect) {
     EXPECT_TRUE(factory.is_consistent());
 }
 
-TEST(FactoryIOTest, ParseRamp) {
+TEST(FactoryIOTest, ParseRamp1) {
     std::istringstream iss("LOADING_RAMP id=1 delivery-interval=3");
     auto factory = load_factory_structure(iss);
 
@@ -27,7 +29,7 @@ TEST(FactoryIOTest, ParseRamp) {
     EXPECT_EQ(3, r.get_delivery_interval());
 }
 
-TEST(WorkerTest, HasBuffer) {
+TEST(WorkerTest, HasBuffer1) {
     // Test scenariusza opisanego na stronie:
     // http://home.agh.edu.pl/~mdig/dokuwiki/doku.php?id=teaching:programming:soft-dev:topics:net-simulation:part_nodes#bufor_aktualnie_przetwarzanego_polproduktu
 

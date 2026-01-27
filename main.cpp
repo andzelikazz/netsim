@@ -1,6 +1,8 @@
-#include "gtest/gtest.h"
+#include <iostream>
+#include "package.hxx"
+#include "storage_types.hxx"
+#include "types.hxx"
 
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+int main() {
+    std::cout << "Hello, NetSim!!" << std::endl;
 }
